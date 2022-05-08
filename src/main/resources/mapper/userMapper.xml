@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.aws.user.mapper.UserMapper">
+    <select id="findAll" resultType="HashMap">
+        SELECT *
+          FROM TB_USER
+    </select>
+
+    <select id="findUser" parameterType="HashMap" resultType="HashMap">
+        SELECT *
+          FROM TB_USER
+         WHERE USER_ID = #{id}
+    </select>
+
+    <insert id="insertUser" parameterType="HashMap">
+        INSERT INTO TB_USER (
+                              USER_ID
+                            , USER_PWD
+                            , USER_NAME
+                            , USER_AUTH
+                            )
+                     VALUES (
+                              #{id}
+                            , #{pwd}
+                            , #{name}
+                            , #{auth}
+                            )
+    </insert>
+
+    <update id="updateUser" parameterType="Int">
+        UPDATE TB_USER
+           SET USER_NAME = #{name}
+             , USER_AUTH = #{auth}
+    </update>
+
+</mapper>
